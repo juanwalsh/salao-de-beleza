@@ -133,7 +133,9 @@ const Navbar: React.FC = () => {
           <div className="flex flex-col space-y-8 items-start">
              {/* Drawer Header */}
              <div className="w-full border-b border-lumiere-200 pb-6 mb-2">
-                <span className="font-serif text-2xl tracking-widest text-lumiere-900">Menu</span>
+                <span className="font-serif text-2xl tracking-widest text-lumiere-900">Menu
+                  lavo #teamo
+                </span>
              </div>
 
             {NAV_LINKS.map((link) => {

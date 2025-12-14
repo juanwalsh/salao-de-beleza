@@ -62,6 +62,7 @@ const Hero: React.FC = () => {
             <FadeIn delay={800}>
               <p className="font-sans text-lumiere-800 text-sm md:text-base leading-relaxed max-w-md mt-6 tracking-wide border-l border-lumiere-900 pl-6">
                 Redefinindo o luxo através da simplicidade. Uma experiência de beleza personalizada onde a técnica encontra a arte.
+                oi lavinia
               </p>
             </FadeIn>
         </div>
