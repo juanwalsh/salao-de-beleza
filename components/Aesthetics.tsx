@@ -14,8 +14,10 @@ const Aesthetics: React.FC = () => {
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex flex-col lg:flex-row gap-16 items-center">
           
-          {/* Image Side */}
-          <div className="lg:w-1/2 relative h-[600px] w-full">
+          {/* Image Side - CORREÇÃO AQUI */}
+          {/* Antes: h-[600px] fixo (ficava esticado no mobile) */}
+          {/* Agora: aspect-square (quadrado no mobile) | lg:h-[600px] (alto no PC) */}
+          <div className="lg:w-1/2 relative aspect-square lg:aspect-auto lg:h-[600px] w-full">
             <FadeIn className="h-full w-full">
                <div className="relative h-full w-full overflow-hidden">
                  {/* Removed hover:scale-105 class */}
@@ -27,7 +29,7 @@ const Aesthetics: React.FC = () => {
                  {/* Badge */}
                  <div className="absolute bottom-8 right-8 bg-white/90 backdrop-blur p-4 max-w-[150px] text-center shadow-lg">
                     <span className="font-serif text-2xl text-lumiere-900 block">100%</span>
-                    <span className="text-[0.5rem] uppercase tracking-widest text-lumiere-500">Natural Products</span>
+                    <span className="text-[0.5rem] uppercase tracking-widest text-lumiere-500">Produtos Naturais</span>
                  </div>
                </div>
             </FadeIn>
@@ -37,7 +39,7 @@ const Aesthetics: React.FC = () => {
           <div className="lg:w-1/2 space-y-12">
             <FadeIn>
               <h2 className="font-serif text-4xl md:text-5xl text-lumiere-900 mb-6">
-                Body & <span className="italic text-lumiere-400">Wellness</span>
+                Corpo & <span className="italic text-lumiere-400">Bem-estar</span>
               </h2>
               <p className="font-sans text-lumiere-600 text-sm leading-7 max-w-md">
                 Protocolos exclusivos que unem tecnologia avançada e terapias manuais para resultados visíveis desde a primeira sessão.

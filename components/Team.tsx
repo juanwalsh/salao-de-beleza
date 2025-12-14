@@ -8,14 +8,19 @@ const Team: React.FC = () => {
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-16">
           <FadeIn>
-            <p className="text-xs font-sans tracking-[0.3em] uppercase text-lumiere-400 mb-4">Experts</p>
-            <h2 className="font-serif text-4xl md:text-5xl text-lumiere-900">Nosso Time</h2>
+            <p className="text-xs font-sans tracking-[0.3em] uppercase text-lumiere-400 mb-4">Especialistas</p>
+            <h2 className="font-serif text-4xl md:text-5xl text-lumiere-900">Nossa Equipe</h2>
           </FadeIn>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {TEAM_MEMBERS.map((member, idx) => (
-            <FadeIn key={member.id} delay={idx * 150} className="group relative">
+            <FadeIn 
+              key={member.id} 
+              delay={idx * 150} 
+              // ALTERAÇÃO: w-[80%] reduz o tamanho no mobile, mx-auto centraliza, md:w-full restaura no desktop
+              className="group relative w-[90%] mx-auto md:w-full"
+            >
               <div className="relative overflow-hidden aspect-[3/4] mb-6 shadow-md bg-lumiere-200">
                 {/* Image - Removed grayscale and hover scale */}
                 <img 

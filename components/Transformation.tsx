@@ -37,11 +37,9 @@ const Transformation: React.FC = () => {
     };
   }, []);
 
-  // Using generic high-quality textures to represent "Dull/Common" vs "Premium/Luminous" 
-  // since finding exact before/after matching headshots via generic URLs is difficult.
-  // Using a darker, flatter image for "Before" and a luminous one for "After".
-  const afterImage = "https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?q=80&w=1587&auto=format&fit=crop"; // Bright, Styled
-  const beforeImage = "https://images.unsplash.com/photo-1522337660859-02fbefca4702?q=80&w=2669&auto=format&fit=crop"; // Darker, Moody (simulating raw state)
+  // Definição das imagens conforme solicitado e verificado no seu print
+  const afterImage = "https://images.unsplash.com/photo-1522337660859-02fbefca4702?q=80&w=2669&auto=format&fit=crop";     // Imagem "Depois"
+  const beforeImage = "/Public/malunha1.webp"; // Imagem "Antes" (extensão .webp)
 
   return (
     <section className="py-32 bg-white relative">
@@ -66,7 +64,7 @@ const Transformation: React.FC = () => {
             onMouseDown={handleInteractionStart}
             onTouchStart={handleInteractionStart}
           >
-            {/* After Image (Background) */}
+            {/* After Image (Background) - UNHA1 */}
             <img 
               src={afterImage} 
               alt="After Transformation" 
@@ -77,7 +75,7 @@ const Transformation: React.FC = () => {
               LUMIÈRE
             </div>
 
-            {/* Before Image (Foreground - Clipped) */}
+            {/* Before Image (Foreground - Clipped) - MALUNHA1 */}
             <div 
               className="absolute inset-0 overflow-hidden"
               style={{ clipPath: `inset(0 ${100 - sliderPosition}% 0 0)` }}
@@ -85,7 +83,8 @@ const Transformation: React.FC = () => {
               <img 
                 src={beforeImage} 
                 alt="Before Transformation" 
-                className="absolute inset-0 w-full h-full object-cover grayscale-[50%] brightness-75"
+                className="absolute inset-0 w-full h-full object-cover" 
+                // Removi o grayscale/brightness para mostrar a unha original exatamente como é
                 draggable={false}
               />
               <div className="absolute top-4 left-4 bg-lumiere-900/90 backdrop-blur px-3 py-1 text-xs font-sans tracking-widest text-white z-10">
@@ -107,7 +106,7 @@ const Transformation: React.FC = () => {
         
         <FadeIn delay={400} className="text-center mt-12">
            <p className="font-sans text-lumiere-600 text-sm italic">
-             Arraste para ver a diferença de técnica e tratamento.
+             Arraste para ver a diferença na técnica e tratamento.
            </p>
         </FadeIn>
       </div>

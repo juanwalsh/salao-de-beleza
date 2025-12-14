@@ -1,12 +1,61 @@
 import React, { useState, MouseEvent } from 'react';
-import { GALLERY_IMAGES } from '../constants';
 import FadeIn from './ui/FadeIn';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
+
+// Definição das imagens com Textos Elegantes e CORREÇÃO RESPONSIVA
+const GALLERY_IMAGES = [
+  {
+    id: 1,
+    src: "/Public/img1.png",
+    alt: "Corte Feminino Moderno",
+    category: "Masculino", 
+    title: "Cavalheiro Moderno", 
+    // Celular: padrão (1x1) | PC: padrão (1x1)
+    span: "col-span-1 row-span-1"
+  },
+  {
+    id: 2,
+    src: "/Public/img2.png",
+    alt: "Penteado Ondulado",
+    category: "Styling",
+    title: "Radiância Clássica",
+    // Celular: 1x1 | PC: 1x2 (Alto)
+    // Se quiser que fique alto no celular também, use "row-span-2 md:row-span-2"
+    span: "col-span-1 md:row-span-2" 
+  },
+  {
+    id: 3,
+    src: "/Public/img3.jpg",
+    alt: "Corte Masculino",
+    category: "Corte Assinatura",
+    title: "Minimalista Urbano", 
+    span: "col-span-1 row-span-1"
+  },
+  {
+    id: 4,
+    src: "/Public/img4.jpg",
+    alt: "Maquiagem Artística",
+    category: "Editorial",
+    title: "Vanguarda",
+    // CORREÇÃO CRÍTICA AQUI:
+    // Celular: col-span-1 (ocupa a tela toda normal)
+    // PC: col-span-2 (ocupa 2 espaços e fica grande)
+    span: "col-span-1 md:col-span-1 md:row-span-1" 
+  },
+  {
+    id: 5,
+    src: "/Public/img5.jpg",
+    alt: "Tratamento Capilar",
+    category: "Tratamento",
+    title: "Essência Pura",
+    span: "col-span-1 row-span-1"
+  }
+];
 
 const Gallery: React.FC = () => {
   const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null);
 
-  // Lightbox navigation
+  // Navegação do Lightbox
   const nextImage = (e: React.MouseEvent) => {
     e.stopPropagation();
     if (selectedImageIndex !== null) {
@@ -21,9 +70,8 @@ const Gallery: React.FC = () => {
     }
   };
 
-  // 3D Tilt Logic
+  // Lógica do efeito 3D (Tilt)
   const handleMouseMove = (e: MouseEvent<HTMLDivElement>) => {
-    // Disable on mobile/tablet (width < 768px)
     if (typeof window !== 'undefined' && window.innerWidth < 768) return;
 
     const card = e.currentTarget;
@@ -31,7 +79,6 @@ const Gallery: React.FC = () => {
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
     
-    // Calculate rotation (-10deg to 10deg)
     const xRot = ((y / rect.height) - 0.5) * -10; 
     const yRot = ((x / rect.width) - 0.5) * 10;
 
@@ -47,20 +94,21 @@ const Gallery: React.FC = () => {
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-20 max-w-2xl mx-auto">
           <FadeIn>
-            <p className="text-xs font-sans tracking-[0.3em] uppercase text-lumiere-400 mb-4">Portfolio</p>
+            <p className="text-xs font-sans tracking-[0.3em] uppercase text-lumiere-400 mb-4">Portfólio</p>
             <h2 className="font-serif text-4xl md:text-5xl text-lumiere-900">Curadoria Visual</h2>
           </FadeIn>
         </div>
 
+        {/* Grid ajustado */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[300px] grid-flow-dense">
           {GALLERY_IMAGES.map((item, index) => (
             <FadeIn 
               key={item.id} 
               delay={index * 100} 
-              className={`relative group overflow-hidden ${item.span || 'col-span-1 row-span-1'} cursor-pointer`}
+              className={`relative group overflow-hidden ${item.span} cursor-pointer rounded-sm`}
             >
               <div 
-                className="w-full h-full transition-transform duration-200 ease-out will-change-transform"
+                className="w-full h-full transition-transform duration-500 ease-out will-change-transform"
                 onMouseMove={handleMouseMove}
                 onMouseLeave={handleMouseLeave}
                 onClick={() => setSelectedImageIndex(index)}
@@ -68,62 +116,79 @@ const Gallery: React.FC = () => {
                 <img 
                   src={item.src} 
                   alt={item.alt} 
-                  className="w-full h-full object-cover pointer-events-none"
+                  className="w-full h-full object-cover pointer-events-none transition-transform duration-700 group-hover:scale-110"
                 />
-                <div className="absolute inset-0 bg-lumiere-900/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center pointer-events-none">
-                  <div className="bg-white/90 backdrop-blur-sm px-6 py-3 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                    <span className="font-serif italic text-xl text-lumiere-900">{item.category}</span>
+                
+                {/* O EFEITO DE HOVER COM OS TEXTOS AQUI */}
+                <div className="absolute inset-0 bg-lumiere-900/60 opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-center justify-center pointer-events-none backdrop-blur-[2px]">
+                  <div className="text-center transform translate-y-8 group-hover:translate-y-0 transition-transform duration-500 px-4">
+                    {/* Categoria pequena em cima */}
+                    <p className="text-[10px] md:text-xs text-lumiere-200 uppercase tracking-[0.25em] mb-2 border-b border-lumiere-200/30 pb-2 inline-block">
+                      {item.category}
+                    </p>
+                    {/* Título Elegante */}
+                    <h3 className="font-serif text-2xl md:text-3xl text-white italic">
+                      {item.title}
+                    </h3>
                   </div>
                 </div>
+
               </div>
             </FadeIn>
           ))}
           
-          {/* Static CTA Card - Hover only on md+ */}
+          {/* Card estático de chamada para ação */}
           <FadeIn delay={600} className="col-span-1 row-span-1 bg-lumiere-100 flex items-center justify-center p-8 text-center flex-col transition-transform duration-300 md:hover:scale-[1.02]">
-             <h3 className="font-serif text-2xl text-lumiere-900 mb-4">Siga nossa jornada</h3>
+             <h3 className="font-serif text-2xl text-lumiere-900 mb-4">Acompanhe nossa jornada</h3>
              <a href="#" className="font-sans text-xs uppercase tracking-widest text-lumiere-600 border-b border-lumiere-600 pb-1 hover:text-lumiere-900 hover:border-lumiere-900 transition-all">@lumiere.salon</a>
           </FadeIn>
         </div>
       </div>
 
-      {/* Lightbox Modal */}
+      {/* Modal Lightbox */}
+      {/* Modal Lightbox */}
       {selectedImageIndex !== null && (
         <div 
           className="fixed inset-0 z-[100] bg-lumiere-900/95 backdrop-blur-md flex items-center justify-center p-4 animate-[fadeIn_0.3s_ease-out]"
           onClick={() => setSelectedImageIndex(null)}
         >
           <button 
-            className="absolute top-8 right-8 text-white/50 hover:text-white transition-colors"
+            className="absolute top-8 right-8 text-white/50 hover:text-white transition-colors z-50"
             onClick={() => setSelectedImageIndex(null)}
           >
             <X size={40} />
           </button>
 
+          {/* BOTÃO ESQUERDO CORRIGIDO: Adicionado z-50 */}
           <button 
-            className="absolute left-4 md:left-8 text-white/50 hover:text-white transition-colors"
+            className="absolute left-4 md:left-8 text-white/50 hover:text-white transition-colors z-50"
             onClick={prevImage}
           >
             <ChevronLeft size={48} />
           </button>
 
           <div 
-            className="relative max-w-5xl max-h-[80vh] w-full"
-            onClick={(e) => e.stopPropagation()} // Prevent closing when clicking image
+            className="relative max-w-5xl max-h-[80vh] w-full flex flex-col items-center"
+            onClick={(e) => e.stopPropagation()} 
           >
              <img 
                src={GALLERY_IMAGES[selectedImageIndex].src} 
                alt={GALLERY_IMAGES[selectedImageIndex].alt} 
-               className="w-full h-full object-contain shadow-2xl"
+               className="w-full h-full max-h-[70vh] object-contain shadow-2xl"
              />
-             <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-8 text-white">
-                <p className="font-serif text-3xl italic mb-2">{GALLERY_IMAGES[selectedImageIndex].category}</p>
-                <p className="font-sans text-xs uppercase tracking-widest opacity-80">{GALLERY_IMAGES[selectedImageIndex].alt}</p>
+             <div className="mt-6 text-center text-white">
+                <p className="font-sans text-xs uppercase tracking-[0.2em] text-lumiere-300 mb-2">
+                  {GALLERY_IMAGES[selectedImageIndex].category}
+                </p>
+                <p className="font-serif text-3xl italic">
+                  {GALLERY_IMAGES[selectedImageIndex].title}
+                </p>
              </div>
           </div>
 
+          {/* BOTÃO DIREITO: Adicionado z-50 para garantir */}
           <button 
-            className="absolute right-4 md:right-8 text-white/50 hover:text-white transition-colors"
+            className="absolute right-4 md:right-8 text-white/50 hover:text-white transition-colors z-50"
             onClick={nextImage}
           >
             <ChevronRight size={48} />

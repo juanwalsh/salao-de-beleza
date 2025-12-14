@@ -20,7 +20,7 @@ const Navbar: React.FC = () => {
         const element = document.getElementById(section);
         if (element) {
           const rect = element.getBoundingClientRect();
-          // Check if section is approximately in the viewport (offset for navbar)
+          // Check if section is approximately in the viewport
           if (rect.top <= 200 && rect.bottom >= 200) {
             current = section;
           }
@@ -61,7 +61,7 @@ const Navbar: React.FC = () => {
         className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 border-b ${
           isScrolled
             ? 'bg-lumiere-50/95 backdrop-blur-md py-4 border-lumiere-200 shadow-sm'
-            : 'bg-transparent py-6 border-transparent'
+            : 'bg-transparent py-4 md:py-6 border-transparent'
         }`}
       >
         <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
@@ -71,10 +71,10 @@ const Navbar: React.FC = () => {
             onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
             className="z-50 group cursor-pointer relative"
           >
-            <h1 className="font-serif text-3xl tracking-widest text-lumiere-900 group-hover:opacity-80 transition-opacity">
+            <h1 className="font-serif text-2xl md:text-3xl tracking-widest text-lumiere-900 group-hover:opacity-80 transition-opacity">
               LUMIÈRE
             </h1>
-            <span className="block text-[0.6rem] tracking-[0.4em] text-lumiere-800 text-center uppercase font-sans mt-1">
+            <span className="block text-[0.5rem] md:text-[0.6rem] tracking-[0.4em] text-lumiere-800 text-center uppercase font-sans mt-1">
               Salon & Spa
             </span>
           </a>
@@ -91,7 +91,6 @@ const Navbar: React.FC = () => {
                   className={`relative text-lumiere-900 font-sans text-xs tracking-[0.15em] hover:text-lumiere-400 transition-colors uppercase cursor-pointer py-2`}
                 >
                   {link.label}
-                  {/* Active Indicator Underline */}
                   <span className={`absolute bottom-0 left-0 w-full h-[1px] bg-lumiere-900 transform transition-transform duration-300 origin-left ${isActive ? 'scale-x-100' : 'scale-x-0'}`}></span>
                 </a>
               );
@@ -99,7 +98,7 @@ const Navbar: React.FC = () => {
             <Button variant="primary" href={WHATSAPP_LINK} target="_blank">Reservar</Button>
           </div>
 
-          {/* Mobile/Tablet Toggle (Visible on Screens < 1024px) */}
+          {/* Mobile/Tablet Toggle */}
           <button
             className="lg:hidden text-lumiere-900 z-50 p-2 focus:outline-none hover:opacity-70 transition-opacity"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -124,15 +123,17 @@ const Navbar: React.FC = () => {
           onClick={() => setIsMobileMenuOpen(false)}
         />
 
-        {/* Drawer Panel */}
+        {/* Drawer Panel CORRIGIDO PARA TABLET */}
+        {/* pt-24 (96px) é suficiente para passar a navbar e economiza espaço em cima */}
         <div 
-          className={`absolute right-0 top-0 h-full w-[300px] md:w-[400px] bg-lumiere-50 shadow-2xl flex flex-col justify-start pt-32 px-10 transition-transform duration-500 ease-out transform border-l border-lumiere-200 ${
+          className={`fixed right-0 top-0 h-[100dvh] w-[300px] md:w-[400px] bg-lumiere-50 shadow-2xl flex flex-col pt-24 px-8 md:px-10 transition-transform duration-500 ease-out transform border-l border-lumiere-200 overflow-y-auto ${
             isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
           }`}
         >
-          <div className="flex flex-col space-y-8 items-start">
+          {/* space-y-5 (20px) no tablet aproxima os itens, garantindo que o botão apareça */}
+          <div className="flex flex-col space-y-5 md:space-y-6 items-start pb-6">
              {/* Drawer Header */}
-             <div className="w-full border-b border-lumiere-200 pb-6 mb-2">
+             <div className="w-full border-b border-lumiere-200 pb-4 mb-2">
                 <span className="font-serif text-2xl tracking-widest text-lumiere-900">Menu
                 </span>
              </div>
@@ -144,14 +145,16 @@ const Navbar: React.FC = () => {
                   key={link.label}
                   href={link.href}
                   onClick={(e) => handleNavClick(e, link.href)}
-                  className={`font-serif text-2xl transition-all cursor-pointer ${isActive ? 'text-lumiere-400 pl-4 border-l-2 border-lumiere-400' : 'text-lumiere-900 hover:text-lumiere-400 hover:pl-2'}`}
+                  // Mantive text-2xl no tablet para legibilidade, mas o espaçamento menor compensa
+                  className={`font-serif text-xl md:text-2xl transition-all cursor-pointer ${isActive ? 'text-lumiere-400 pl-4 border-l-2 border-lumiere-400' : 'text-lumiere-900 hover:text-lumiere-400 hover:pl-2'}`}
                 >
                   {link.label}
                 </a>
               );
             })}
             
-            <div className="pt-8 w-full">
+            {/* Margem superior do botão reduzida para pt-6 */}
+            <div className="pt-6 w-full">
               <Button variant="primary" href={WHATSAPP_LINK} target="_blank" className="w-full justify-center flex">
                 Agendar
               </Button>
