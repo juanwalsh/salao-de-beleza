@@ -41,7 +41,6 @@ const Aesthetics: React.FC = () => {
               </h2>
               <p className="font-sans text-lumiere-600 text-sm leading-7 max-w-md">
                 Protocolos exclusivos que unem tecnologia avançada e terapias manuais para resultados visíveis desde a primeira sessão.
-                oi lavinia oi lavinia oi lavinai
               </p>
             </FadeIn>
 
