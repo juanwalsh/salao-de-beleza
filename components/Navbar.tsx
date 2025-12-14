@@ -134,7 +134,6 @@ const Navbar: React.FC = () => {
              {/* Drawer Header */}
              <div className="w-full border-b border-lumiere-200 pb-6 mb-2">
                 <span className="font-serif text-2xl tracking-widest text-lumiere-900">Menu
-                  lavo #teamo
                 </span>
              </div>
 

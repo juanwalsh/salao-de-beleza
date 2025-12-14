@@ -33,7 +33,6 @@ const Editorial: React.FC = () => {
               <div className="w-16 h-[1px] bg-lumiere-300 mb-8" />
               <p className="font-sans text-lumiere-200 text-sm leading-7 tracking-wide mb-8 text-justify">
                 Nossa filosofia une a precisão técnica das academias internacionais com a sensibilidade artística dos editoriais de moda. Cada cor, cada corte e cada textura é pensada para realçar sua beleza natural, sem transformá-la em outra pessoa, mas revelando sua melhor versão.
-                oi laviniaaaaaaaa freire de almeida minha princesa linda
               </p>
               {/* CTA Removed */}
             </FadeIn>
