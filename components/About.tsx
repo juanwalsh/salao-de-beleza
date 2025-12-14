@@ -73,7 +73,7 @@ const About: React.FC = () => {
             <FadeIn delay={200}>
               <h2 className="font-serif text-4xl md:text-5xl text-lumiere-900 leading-tight">
                 Um santuário de <br />
-                <span className="text-lumiere-400 italic">bem-estar</span> e estilo.
+                <span className="text-lumiere-400 italic">bem-estar</span> e estilo. e lavinia!!! te amo
               </h2>
             </FadeIn>
             <FadeIn delay={400}>

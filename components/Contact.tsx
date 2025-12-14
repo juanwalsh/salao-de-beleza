@@ -11,7 +11,7 @@ const Contact: React.FC = () => {
           {/* Brand */}
           <div className="space-y-6">
             <div>
-              <h2 className="font-serif text-4xl tracking-widest">LUMIÈRE</h2>
+              <h2 className="font-serif text-4xl tracking-widest">LUMIÈRE FREIRE</h2>
               <span className="text-[0.6rem] uppercase tracking-[0.4em] text-lumiere-300 block mt-1">Salon & Spa</span>
             </div>
             <p className="text-lumiere-300 text-sm font-light leading-relaxed">
