@@ -39,7 +39,7 @@ const Transformation: React.FC = () => {
 
   // Definição das imagens conforme solicitado e verificado no seu print
   const afterImage = "https://images.unsplash.com/photo-1522337660859-02fbefca4702?q=80&w=2669&auto=format&fit=crop";     // Imagem "Depois"
-  const beforeImage = "/Public/malunha1.webp"; // Imagem "Antes" (extensão .webp)
+  const beforeImage = "/malunha1.webp"; // Imagem "Antes" (extensão .webp)
 
   return (
     <section className="py-32 bg-white relative">

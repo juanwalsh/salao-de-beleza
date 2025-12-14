@@ -6,7 +6,7 @@ import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 const GALLERY_IMAGES = [
   {
     id: 1,
-    src: "/Public/img1.png",
+    src: "/img1.png",
     alt: "Corte Feminino Moderno",
     category: "Masculino", 
     title: "Cavalheiro Moderno", 
@@ -15,7 +15,7 @@ const GALLERY_IMAGES = [
   },
   {
     id: 2,
-    src: "/Public/img2.png",
+    src: "/img2.png",
     alt: "Penteado Ondulado",
     category: "Styling",
     title: "Radiância Clássica",
@@ -25,7 +25,7 @@ const GALLERY_IMAGES = [
   },
   {
     id: 3,
-    src: "/Public/img3.jpg",
+    src: "/img3.jpg",
     alt: "Corte Masculino",
     category: "Corte Assinatura",
     title: "Minimalista Urbano", 
@@ -33,7 +33,7 @@ const GALLERY_IMAGES = [
   },
   {
     id: 4,
-    src: "/Public/img4.jpg",
+    src: "/img4.jpg",
     alt: "Maquiagem Artística",
     category: "Editorial",
     title: "Vanguarda",
@@ -44,7 +44,7 @@ const GALLERY_IMAGES = [
   },
   {
     id: 5,
-    src: "/Public/img5.jpg",
+    src: "/img5.jpg",
     alt: "Tratamento Capilar",
     category: "Tratamento",
     title: "Essência Pura",
